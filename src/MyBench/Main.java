@@ -14,7 +14,7 @@ public class Main {
 
     /////////////////////////////////////////
     //calculate числовой ряд         //////
-    public long bench1() {
+    private long bench1() {
         System.out.println("bench1 starting...");
         long outTime;
 
@@ -34,7 +34,7 @@ public class Main {
         return outTime ;
     }
 
-    public void createCopyOfImages() {
+    private void createCopyOfImages() {
 
         try {
             BufferedImage img = ImageIO.read(new File("image.jpg"));
@@ -49,7 +49,7 @@ public class Main {
 
     ///////////////////////////////////////////
     //Open jpeg                       ///////
-    public long bench2() {
+    private long bench2() {
         System.out.println("bench2 starting...");
         createCopyOfImages();
         long outTime;
@@ -82,7 +82,7 @@ public class Main {
             //End read time
             writeTime = (System.nanoTime() - startTime);
         }
-        catch(IOException i){};
+        catch(IOException ignored){}
 
         //End open time
         outTime = writeTime + readTime;
@@ -90,20 +90,29 @@ public class Main {
         return outTime ;
     }
 
-    public static void main(String[] args) {
+    private static void clrscr(){
+        //Clears Screen in java
+        try {
+            if (System.getProperty("os.name").contains("Windows"))
+                new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
+            else
+                Runtime.getRuntime().exec("cls");
+        } catch (IOException | InterruptedException ignored) {}
+    }
+
+    public static void main(String[] args) throws InterruptedException {
 
         Main test = new Main();
-        long time;
+        long time1, time2, time3;
 
         //first bench
-        time = test.bench1();
-        System.out.printf("|bench1 result| ---> %d nanoSec or %.9f Sec\n\n", time, time / 1000000000.0);
-
+        time1 = test.bench1();
+        System.out.printf("|bench1 result| ---> %d nanoSec or %.9f Sec\n\n", time1, time1 / 1000000000.0);
         //second bench
-        time = test.bench2();
+        time2 = test.bench2();
         System.out.printf("|bench2 read result| ---> %d nanoSec or %.9f Sec\n", test.readTime, test.readTime / 1000000000.0);
         System.out.printf("|bench2 write result| ---> %d nanoSec or %.9f Sec\n", test.writeTime, test.writeTime / 1000000000.0);
-        System.out.printf("|bench2 all result| ---> %d nanoSec or %.9f Sec\n\n", time, time / 1000000000.0);
+        System.out.printf("|bench2 all result| ---> %d nanoSec or %.9f Sec\n\n", time2, time2 / 1000000000.0);
 
         //third bench
         System.out.println("bench3 starting...");
@@ -116,29 +125,39 @@ public class Main {
             }
         }
 
-        time = window.getCalculateTime();
-        System.out.printf("|bench3 calculate result| ---> %d nanoSec or %.9f Sec\n", time, time / 1000000000.0);
+        time3 = window.getCalculateTime();
+        System.out.printf("|bench3 calculate result| ---> %d nanoSec or %.9f Sec\n", time3, time3 / 1000000000.0);
 
         window.setVisible(true);
-        for (;;) {
-            if (window.getDrawTime() != 0) {
-                break;
-            }
+        while (window.getDrawTime() == 0) {
             System.out.print("");
         }
 
-        time = window.getDrawTime();
-        System.out.printf("|bench3 draw result| ---> %d nanoSec or %.9f Sec\n", time, time / 1000000000.0);
+        time3 = window.getDrawTime();
+        //window.setVisible(false);
+        System.out.printf("|bench3 draw result| ---> %d nanoSec or %.9f Sec\n", time3, time3 / 1000000000.0);
 
-        time = window.getTime();
-        System.out.printf("|bench3 result| ---> %d nanoSec or %.9f Sec\n\n", time, time / 1000000000.0);
+        time3 = window.getTime();
+        System.out.printf("|bench3 result| ---> %d nanoSec or %.9f Sec\n\n", time3, time3 / 1000000000.0);
 
 
-        System.out.printf("Press enter to exit");
-
+        System.out.print("Press enter to continue\n");
         System.console().readLine();
-
         window.dispose();
+        Thread.sleep(1500);
+        clrscr();
+
+         System.out.print("|   |\tbench1\t\t|\tbench2\t\t|\tbench3\t\t|\tscore\t\t|\n");
+        System.out.print("---------------------------------------------------------------------------------------------------------\n");
+        System.out.print("| 1 |\t2295835685\t|\t3275144216\t|\t3197557981\t|\tscore\t|\n");
+        System.out.print("---------------------------------------------------------------------------------------------------------\n");
+        System.out.printf("| 2 |\t%d\t|\t%d\t|\t%d\t|\tscore\t|\n", time1, time2, time3);
+        System.out.print("---------------------------------------------------------------------------------------------------------\n");
+        System.out.printf("| 3 |\t%d\t|\t%d\t|\t%d\t|\tscore\t|\n", time1, time2, time3);
+        System.out.print("---------------------------------------------------------------------------------------------------------\n\n");
+
+        System.out.print("Press enter to continue\n");
+        System.console().readLine();
 
     }
 
