@@ -90,6 +90,37 @@ public class Main {
         return outTime ;
     }
 
+    private void tableOut(long time1, long time2, long time3) {
+
+        double index = Math.pow( time1*1.0 * time2*1.0 * time3*1.0, (1.0/3.0) ) ;
+
+        System.out.print("-------------------------------------------------------------------------------------------------\n");
+        System.out.print("|   |\tbench1\t\t|\tbench2\t\t|\tbench3\t\t|\tindex\t\t|\n");
+        System.out.print("-------------------------------------------------------------------------------------------------\n");
+        System.out.print("| 1 |\t2295835685\t|\t3275144216\t|\t3197557981\t|\t2886223020\t|\n");
+        System.out.print("-------------------------------------------------------------------------------------------------\n");
+        System.out.print("| 2 |\t3253179347\t|\t4337148679\t|\t4136314356\t|\t3878900309\t|\n");
+        System.out.print("-------------------------------------------------------------------------------------------------\n");
+        System.out.printf("| T |\t%d\t|\t%d\t|\t%d\t|\t%.0f\t|\n", time1, time2, time3, index);
+        System.out.print("------------------------------------------------------------------------------------------------\n\n");
+
+    }
+
+    private void tableNormalOut(long time1, long time2, long time3) {
+
+        double index = Math.pow( time1*1.0 * time2*1.0 * time3*1.0, (1.0/3.0) ) ;
+
+        System.out.print("-------------------------------------------------------------------------------------------------\n");
+        System.out.print("|   |\tbench1\t\t|\tbench2\t\t|\tbench3\t\t|\tindex\t\t|\n");
+        System.out.print("-------------------------------------------------------------------------------------------------\n");
+        System.out.print("| 1 |\t0,70572060\t|\t0,75513763\t|\t0,77304520\t|\t0,74408280\t|\n");
+        System.out.print("-------------------------------------------------------------------------------------------------\n");
+        System.out.print("| 2 |\t     1    \t|\t     1    \t|\t     1    \t|\t     1    \t|\n");
+        System.out.print("-------------------------------------------------------------------------------------------------\n");
+        System.out.printf("| T |\t%.8f\t|\t%.8f\t|\t%.8f\t|\t%.8f\t|\n", time1 / 3253179347.0, time2 / 4337148679.0, time3 / 4136314356.0, index / 3878900309.0);
+        System.out.print("-------------------------------------------------------------------------------------------------\n\n");
+
+    }
     private static void clrscr(){
         //Clears Screen in java
         try {
@@ -141,22 +172,18 @@ public class Main {
         System.out.printf("|bench3 result| ---> %d nanoSec or %.9f Sec\n\n", time3, time3 / 1000000000.0);
 
 
-        System.out.print("Press enter to continue\n");
+        System.out.print("Press enter to continue...\n");
         System.console().readLine();
         window.dispose();
-        Thread.sleep(1500);
+        Thread.sleep(500);
         clrscr();
 
-         System.out.print("|   |\tbench1\t\t|\tbench2\t\t|\tbench3\t\t|\tscore\t\t|\n");
-        System.out.print("---------------------------------------------------------------------------------------------------------\n");
-        System.out.print("| 1 |\t2295835685\t|\t3275144216\t|\t3197557981\t|\tscore\t|\n");
-        System.out.print("---------------------------------------------------------------------------------------------------------\n");
-        System.out.printf("| 2 |\t%d\t|\t%d\t|\t%d\t|\tscore\t|\n", time1, time2, time3);
-        System.out.print("---------------------------------------------------------------------------------------------------------\n");
-        System.out.printf("| 3 |\t%d\t|\t%d\t|\t%d\t|\tscore\t|\n", time1, time2, time3);
-        System.out.print("---------------------------------------------------------------------------------------------------------\n\n");
+        test.tableOut(time1, time2, time3);
+        System.out.println("\n");
+        test.tableNormalOut(time1, time2, time3);
+        System.out.println("\n\n");
 
-        System.out.print("Press enter to continue\n");
+        System.out.print("Press enter to continue...\n");
         System.console().readLine();
 
     }
