@@ -26,7 +26,7 @@ public class MainWindow extends javax.swing.JFrame {
             jTable1.setValueAt( time[i], 2, i+1 );
         }
         
-        jTable2.setValueAt( time[01] / 4.000427489 , 2, 1);
+        jTable2.setValueAt( time[0] / 4.000427489 , 2, 1);
         jTable2.setValueAt( time[1] / 0.924923943 , 2, 2);
         jTable2.setValueAt( time[2] / 19.92191575 , 2, 3);
         jTable2.setValueAt( time[3] / 4.1929000319379774 , 2, 4);
