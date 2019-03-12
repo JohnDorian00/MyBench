@@ -40,7 +40,7 @@ public class BenchThird extends JFrame {
         
         int xPoly[] = {50, 350, 200};
         int yPoly[] = {450, 450, 50};
-        Color[] colors = {Color.RED, Color.BLUE, Color.GREEN};
+        Color[] colors = {Color.RED, Color.BLUE, Color.PINK};
         
         for (int i= 0; i < 30000; i++) {
             for (int j = 0; j < 3; j++ ) {

@@ -1,7 +1,7 @@
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * and open the template in the editor.   
  */
 package benchvalera;
 
@@ -14,7 +14,7 @@ import matrix.Matrix;
 public class BenchFirst {
 
 
-        /**
+        /*
      * Функция нахождения определителя матрицы методом Гаусса
      * @param mt1 матрица, определитель которой необходимо найти. Тип <b>Matrix</b>
      * @return result — значение определителя матрицы. Тип <b>double</b> 
